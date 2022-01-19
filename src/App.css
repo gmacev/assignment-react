@@ -18,22 +18,23 @@ h1, h2, h3, h4, h5, h6{
     z-index: 69420;
 }
 
-.topBar a {
-    text-decoration: none !important;
-    border: 2px solid #cdd5dd;
-    border-radius: 5px;
-    color: #575757;
-    padding: 5px;
-    padding-left: 10px;
-    padding-right: 10px;
-    *height: 100%;
+.topBar h2{
     min-width: 100px;
-    margin: 10px;
+    margin: 0 10px 0 10px;
     display: flex;
     align-items: center;
     justify-content: center;
     text-transform: uppercase;
     transition: 0.2s;
+    padding: 5px 10px 5px 10px;
+    cursor: pointer;
+}
+
+.topBar h2:hover{
+    background-color: black;
+    color: royalblue;
+
+    border-radius: 5px;
 }
 
 .topBar a:hover{
@@ -41,8 +42,8 @@ h1, h2, h3, h4, h5, h6{
     color: orangered;
 }
 
-.topBar, .characterSelectCard, .btn {
-    box-shadow: 0 3px 10px rgb(0 0 0 / 10%), 0 3px 10px rgb(0 0 0 / 15%), 0 3px 8px rgb(0 0 0 / 20%);
+.mainWrapper{
+    margin-top: 90px;
 }
 
 .characterSelectCard{
@@ -76,7 +77,33 @@ h1, h2, h3, h4, h5, h6{
     transform: scale(1.05);
 }
 
-.exclusiveText, h1, h2, h3, h4, h5, h6, .btn {text-shadow: 3px 3px 2px rgb(0 0 0 / 100%);}
+.characterPanel{
+    margin: 20px;
+    padding: 20px;
+}
+
+.characterPanel img{
+    margin-bottom: -20px;
+    min-width: 200px;
+    max-width: 350px;
+    width: 100%;
+}
+
+.characterInfo{
+    margin-top: 40px;
+    padding: 20px;
+    min-width: 250px;
+}
+
+.characterStats{
+
+}
+
+.topBar, .characterSelectCard, .btn, .characterPanel, .characterInfo {
+    box-shadow: 0 3px 10px rgb(0 0 0 / 10%), 0 3px 10px rgb(0 0 0 / 15%), 0 3px 8px rgb(0 0 0 / 20%);
+}
+
+.exclusiveText, h1, h2, h3, h4, h5, h6, .btn, code {text-shadow: 3px 3px 2px rgb(0 0 0 / 70%);}
 
 .baseColor{background-color: #121212;}
 .elevation0{background-color: rgba(255, 255, 255, 0%);}
@@ -158,12 +185,13 @@ h1, h2, h3, h4, h5, h6{
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0,0,0,0.4);
+    background-color: rgba(0,0,0,0.7);
     z-index: -1;
 }
 
 code{
     font-size: 15px !important;
+    padding: 10px;
 }
 
 
@@ -174,5 +202,7 @@ code{
     to { opacity: 1.0 }
     from { opacity: 0.5 }
 }
+
+.flex1{flex: 1}
 
 

@@ -1,14 +1,21 @@
 import React, {useState} from 'react';
 import CharacterSelectCard from "../components/CharacterSelectCard";
 import {characters} from "../misc/Helpers";
+import {updatePlayerCharacter} from "../features/PlayerData";
+import {useDispatch} from "react-redux";
+import {useNavigate} from "react-router-dom";
 
 const StartGame = () => {
     const [getSelected, setSelected] = useState([false, false, false, false, false, false, false, false])
     const [getCharacter, setCharacter] = useState(null)
 
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
+
     function startGame()
     {
-        console.log(getCharacter)
+        dispatch(updatePlayerCharacter(getCharacter))
+        navigate("/game")
     }
 
     return (

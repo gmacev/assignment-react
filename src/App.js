@@ -33,6 +33,7 @@ const MainWindow = () => {
 
 import TopBar from "./components/TopBar";
 import StartGame from "./pages/StartGame";
+import Game from "./pages/Game";
 
 function App() {
   return (
@@ -41,7 +42,7 @@ function App() {
             <TopBar/>
             <Routes>
               <Route path={"/"} element={<StartGame/>}/>
-              {/*<Route path={"/shop"} element={<Shop/>}/>*/}
+              <Route path={"/game"} element={<Game/>}/>
             </Routes>
           </BrowserRouter>
       </div>
