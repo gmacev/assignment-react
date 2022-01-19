@@ -4,8 +4,6 @@ import {useLocation} from "react-router-dom";
 const TopBar = () => {
     const {pathname} = useLocation()
 
-    console.log(pathname)
-
     return (
         <div>
             {pathname !== "/" &&
