@@ -1,38 +1,83 @@
-.App {
-  text-align: center;
+.container-fluid {
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+h1, h2, h3, h4, h5, h6{
+    font-family: "Luxurious Roman";
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.topBar {
+    width: 100%;
+    padding: 10px;
+    font-size: 20px;
+
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    z-index: 69420;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.topBar a {
+    text-decoration: none !important;
+    border: 2px solid #cdd5dd;
+    border-radius: 5px;
+    color: #575757;
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    *height: 100%;
+    min-width: 100px;
+    margin: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-transform: uppercase;
+    transition: 0.2s;
 }
 
-.App-link {
-  color: #61dafb;
+.topBar a:hover{
+    background-color: black;
+    color: orangered;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.topBar, .characterSelectCard {
+    box-shadow: 0 3px 10px rgb(0 0 0 / 10%), 0 3px 10px rgb(0 0 0 / 15%), 0 3px 8px rgb(0 0 0 / 20%);
 }
+
+.characterSelectCard{
+    margin: 20px;
+    padding: 20px;
+
+    background-color: rgba(255, 255, 255, 5%); /* fallback for old browsers */
+    background: -webkit-linear-gradient(to bottom, #434343, #000000);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to bottom, #434343, #000000); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+
+.characterSelectCard img{
+    width: 250px;
+}
+
+.baseColor{background-color: #121212;}
+.elevation0{background-color: rgba(255, 255, 255, 0%);}
+.elevation1{background-color: rgba(255, 255, 255, 5%);}
+.elevation2{background-color: rgba(255, 255, 255, 7%);}
+.elevation3{background-color: rgba(255, 255, 255, 8%);}
+.elevation4{background-color: rgba(255, 255, 255, 9%);}
+.elevation5{background-color: rgba(255, 255, 255, 11%);}
+.elevation6{background-color: rgba(255, 255, 255, 12%);}
+.elevation7{background-color: rgba(255, 255, 255, 14%);}
+.elevation8{background-color: rgba(255, 255, 255, 15%);}
+.elevation9{background-color: rgba(255, 255, 255, 16%);}
+
+.highText{color: rgba(255, 255, 255, 87%);}
+.mediumText{color: rgba(255, 255, 255, 60%);}
+.lowText{color: rgba(255, 255, 255, 38%);}
+
+.border1{
+    outline: 1px solid rgba(255, 255, 255, 8%);
+    border-radius: 8px;
+}
+
+.vh100{height: 100vh;}
+

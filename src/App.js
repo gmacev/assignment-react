@@ -1,24 +1,50 @@
-import logo from './logo.svg';
 import './App.css';
+import {BrowserRouter, Routes, Route, Link, useLocation} from "react-router-dom";
+/*import Shop from "./pages/Shop";
+import MainWindow from "./pages/MainWindow";
+import {useSelector} from "react-redux";*/
+
+
+
+/*import {useDispatch, useSelector} from "react-redux";
+import {updateMaterials} from "../features/UpdateMaterials";
+import {useNavigate} from "react-router-dom";
+import {updateHouses} from "../features/UpdateHouses";
+
+const MainWindow = () => {
+  const stateMaterials = useSelector((state) => state.materials.value)
+  const stateHouses = useSelector((state) => state.houses.value)
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+
+  function updateMaterial(material)
+  {
+    const materials =
+        {
+          stone: stateMaterials.stone,
+          wood: stateMaterials.wood,
+          gold: stateMaterials.gold
+        }
+
+    materials[material]++
+
+    dispatch(updateMaterials(materials))
+  }*/
+
+import TopBar from "./components/TopBar";
+import StartGame from "./pages/StartGame";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <div className="container-fluid">
+        <BrowserRouter>
+            <TopBar/>
+            <Routes>
+              <Route path={"/"} element={<StartGame/>}/>
+              {/*<Route path={"/shop"} element={<Shop/>}/>*/}
+            </Routes>
+          </BrowserRouter>
+      </div>
   );
 }
 
