@@ -10,8 +10,11 @@ import {configureStore} from "@reduxjs/toolkit";
 //import materialsReducer from "./features/UpdateMaterials";
 //import housesReducer from "./features/UpdateHouses";
 
+import playerDataReducer from "./features/PlayerData";
+
 const store = configureStore({
     reducer: {
+        playerData: playerDataReducer,
     }
 })
 

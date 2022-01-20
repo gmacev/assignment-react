@@ -1,17 +1,23 @@
 import React from 'react';
-import {useLocation} from "react-router-dom";
+import {useLocation, useNavigate} from "react-router-dom";
 
 const TopBar = () => {
     const {pathname} = useLocation()
-
-    console.log(pathname)
+    const navigate = useNavigate()
 
     return (
         <div>
-            {pathname !== "/" &&
-                <div className="topBar elevation1 d-flex align-items-center justify-content-evenly">
-                    <h1 className="highText">Lorem ipsum</h1>
+            {pathname === "/game" &&
+                <div className="topBar d-flex align-items-center">
+                    <h2 onClick={() => navigate("/shop")} className="whiteText highText textUI">Shop</h2>
+                    <h2 onClick={() => navigate("/arena")} className="whiteText highText textUI">Arena</h2>
                 </div>
+            }
+            {pathname === "/shop" &&
+            <div className="topBar elevation1 d-flex align-items-center">
+                <h2 onClick={() => navigate("/game")} className="whiteText highText textUI">Main</h2>
+                <h2 onClick={() => navigate("/arena")} className="whiteText highText textUI">Arena</h2>
+            </div>
             }
         </div>
 
