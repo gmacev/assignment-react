@@ -14,7 +14,7 @@ import playerDataReducer from "./features/PlayerData";
 
 const store = configureStore({
     reducer: {
-        playerData: playerDataReducer
+        playerData: playerDataReducer,
     }
 })
 

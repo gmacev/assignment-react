@@ -8,7 +8,7 @@ const TopBar = () => {
     return (
         <div>
             {pathname === "/game" &&
-                <div className="topBar elevation1 d-flex align-items-center">
+                <div className="topBar d-flex align-items-center">
                     <h2 onClick={() => navigate("/shop")} className="whiteText highText textUI">Shop</h2>
                     <h2 onClick={() => navigate("/arena")} className="whiteText highText textUI">Arena</h2>
                 </div>

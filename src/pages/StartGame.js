@@ -31,7 +31,7 @@ const StartGame = () => {
             <div>
                 {
                     getSelected.find(x => x === true) &&
-                    <button onClick={startGame} className="btn btn-dark highText whiteText textUI btnBig mt-4">Start game</button>
+                    <button onClick={startGame} className="btn btn-primary highText whiteText textUI btnBig mt-4">Start game</button>
                 }
             </div>
         </div>

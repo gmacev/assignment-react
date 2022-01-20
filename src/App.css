@@ -10,6 +10,8 @@ h1, h2, h3, h4, h5, h6{
     width: 100%;
     padding: 10px;
     font-size: 20px;
+    background-color: #000000;
+    background-image: linear-gradient(147deg, #000000 0%, #2c3e50 74%);
 
     position: fixed;
     left: 0;
@@ -82,24 +84,90 @@ h1, h2, h3, h4, h5, h6{
     padding: 20px;
 }
 
-.characterPanel img{
-    margin-bottom: -20px;
-    min-width: 200px;
-    max-width: 350px;
+.characterPanel img:not(.inventorySlot, .inventoryItem img){
+    max-width: 300px;
     width: 100%;
+    margin-bottom: 20px;
 }
 
 .characterInfo{
-    margin-top: 40px;
     padding: 20px;
     min-width: 250px;
 }
 
-.characterStats{
+.stats{
+    width: 100%;
+}
+
+.inventory{
+    min-width: 225px;
+}
+
+.inventorySlot{
+    width: 75px;
+    height: 75px;
+    padding: 15px;
+}
+
+.inventoryItem{
+    min-width: 75px;
+    height: 75px;
+    padding: 5px;
+}
+
+.inventoryItem img{
+    width: 100%;
+}
+
+.inventory, .shop, .characterPanel{
+    margin: 20px;
+    padding: 20px;
+}
+
+.shop{
 
 }
 
-.topBar, .characterSelectCard, .btn, .characterPanel, .characterInfo {
+.shopWeapons{
+    border-top-right-radius: unset !important;
+    border-bottom-right-radius: unset !important;
+}
+
+.shopPotions{
+    border-top-left-radius: unset !important;
+    border-bottom-left-radius: unset !important;
+}
+
+.shopWeapons, .shopPotions{
+    user-select: none;
+    cursor: pointer;
+    transition: 0.5s;
+    padding: 5px;
+}
+
+.shopWeapons h4, .shopPotions h4{
+    margin-bottom: 0;
+    text-transform: uppercase;
+}
+
+.shopWeapons:hover, .shopPotions:hover, .shopTraderActiveTab{
+    background-color: rgba(255, 255, 255, 20%);
+}
+
+.popover{
+    background-color: rgba(255, 255, 255, 15%) !important;
+    color: rgba(255, 255, 255, 87%);
+    padding: 15px;
+    margin-left: 20px;
+    min-width: 200px;
+}
+
+.popover-arrow{
+    border-right-color: rgba(255, 255, 255, 5%) !important;
+    left: -20px !important;
+}
+
+.topBar, .characterSelectCard, .btn, .characterPanel, .characterInfo, .popover, .inventorySlot, .stats, .shop, .inventory {
     box-shadow: 0 3px 10px rgb(0 0 0 / 10%), 0 3px 10px rgb(0 0 0 / 15%), 0 3px 8px rgb(0 0 0 / 20%);
 }
 
@@ -151,6 +219,7 @@ h1, h2, h3, h4, h5, h6{
 
 .btn{
     background-color: rgb(0, 0, 0, 50%) !important;
+    white-space: nowrap;
 }
 
 .backdropFilter, .btn{
@@ -163,7 +232,7 @@ h1, h2, h3, h4, h5, h6{
     animation-direction: alternate-reverse;
 }
 
-.textUI{
+.textUI, .btn{
     font-family: 'Saira', sans-serif;
 }
 
@@ -185,7 +254,7 @@ h1, h2, h3, h4, h5, h6{
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0,0,0,0.7);
+    background-color: rgba(0,0,0,0.55);
     z-index: -1;
 }
 
@@ -204,5 +273,8 @@ code{
 }
 
 .flex1{flex: 1}
+.flex2{flex: 2}
+.flex3{flex: 3}
+.flex4{flex: 4}
 
 

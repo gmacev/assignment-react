@@ -17,17 +17,23 @@ export const playerDataSlice = createSlice({
                 inventorySlots: 0,
                 gold: 0
             },
+            weapons: [],
+            potions: [],
+            items: []
         }
     },
     reducers: {
         updatePlayerCharacter: (state, action) => {
             state.value.character = action.payload
-            console.log(state.value.character)
+        },
+
+        updatePlayerWeapon: (state, action) => {
+            state.value.weapons = action.payload
         }
     }
 })
 
 // export methods to update state
-export const {updatePlayerCharacter} = playerDataSlice.actions
+export const {updatePlayerCharacter, updatePlayerWeapon} = playerDataSlice.actions
 
 export default playerDataSlice.reducer
