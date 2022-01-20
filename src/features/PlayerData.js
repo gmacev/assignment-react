@@ -19,7 +19,9 @@ export const playerDataSlice = createSlice({
             },
             weapons: [],
             potions: [],
-            items: []
+            items: [],
+            gold: 1000,
+            buyDisabled: false
         }
     },
     reducers: {
@@ -27,13 +29,29 @@ export const playerDataSlice = createSlice({
             state.value.character = action.payload
         },
 
-        updatePlayerWeapon: (state, action) => {
+        updatePlayerWeapons: (state, action) => {
             state.value.weapons = action.payload
+        },
+
+        updatePlayerPotions: (state, action) => {
+            state.value.potions = action.payload
+        },
+
+        updatePlayerItems: (state, action) => {
+            state.value.items = action.payload
+        },
+
+        updatePlayerGold: (state, action) => {
+            state.value.gold = action.payload
+        },
+
+        updateBuyDisabled: (state, action) => {
+            state.value.buyDisabled = action.payload
         }
     }
 })
 
 // export methods to update state
-export const {updatePlayerCharacter, updatePlayerWeapon} = playerDataSlice.actions
+export const {updatePlayerCharacter, updatePlayerWeapons, updatePlayerPotions, updatePlayerItems, updateBuyDisabled, updatePlayerGold} = playerDataSlice.actions
 
 export default playerDataSlice.reducer

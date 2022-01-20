@@ -44,6 +44,10 @@ h1, h2, h3, h4, h5, h6{
     color: orangered;
 }
 
+.gold{
+    gap: 10px;
+}
+
 .mainWrapper{
     margin-top: 90px;
 }
@@ -104,8 +108,8 @@ h1, h2, h3, h4, h5, h6{
 }
 
 .inventorySlot{
-    width: 75px;
-    height: 75px;
+    width: 64px;
+    height: 64px;
     padding: 15px;
 }
 
@@ -138,6 +142,48 @@ h1, h2, h3, h4, h5, h6{
     border-bottom-left-radius: unset !important;
 }
 
+.shopTabPotions, .shopTabWeapons, .inventorySlots{
+    display: grid;
+    justify-content: space-evenly;
+    grid-gap: 10px;
+}
+
+.shopTabPotions, .shopTabWeapons{
+    grid-template-columns: repeat(auto-fill, 280px);
+}
+
+.inventorySlots{
+    grid-template-columns: repeat(auto-fill, 64px);
+}
+
+.inventorySlots img{
+    cursor: pointer;
+}
+
+.inventorySlots img:active{
+    transform: scale(1.1);
+}
+
+.shopItem{
+    padding: 10px;
+    row-gap: 10px;
+}
+
+.shopItem img{
+    max-width: 64px;
+    max-height: 64px;
+}
+
+.shopItem li {
+    list-style-type: square;
+    margin-left: 10px;
+    font-size: 13px;
+}
+
+.shopItem li span{
+    margin-left: -5px;
+}
+
 .shopWeapons, .shopPotions{
     user-select: none;
     cursor: pointer;
@@ -151,15 +197,23 @@ h1, h2, h3, h4, h5, h6{
 }
 
 .shopWeapons:hover, .shopPotions:hover, .shopTraderActiveTab{
-    background-color: rgba(255, 255, 255, 20%);
+    background-color: rgba(255, 255, 255, 20%) !important;
+}
+
+.buyDisabled{
+    background-color: rgba(0,0,0,0.1) !important;
+    cursor: initial;
+}
+
+.buyDisabled *{
+    opacity: 0.4;
 }
 
 .popover{
     background-color: rgba(255, 255, 255, 15%) !important;
     color: rgba(255, 255, 255, 87%);
-    padding: 15px;
-    margin-left: 20px;
-    min-width: 200px;
+    padding: 10px;
+    min-width: 150px;
 }
 
 .popover-arrow{
@@ -196,6 +250,7 @@ h1, h2, h3, h4, h5, h6{
 
 .whiteText{color: rgb(255, 255, 255);}
 .yellowText{color: rgb(203, 216, 55);}
+.redText{color: rgb(216, 55, 55);}
 
 .humanColor{color: rgb(212 161 111);}
 .dwarfColor{color: rgb(193 46 19);}
@@ -206,7 +261,7 @@ h1, h2, h3, h4, h5, h6{
 .trollColor{color: rgb(96 174 179);}
 .undeadColor{color: rgb(193 196 191);}
 
-.border1{outline: 1px solid rgba(255, 255, 255, 8%);}
+.border1{outline: 1px solid rgba(255, 255, 255, 9%);}
 
 .border1, .characterSelected{
     border-radius: 8px;
@@ -227,8 +282,8 @@ h1, h2, h3, h4, h5, h6{
     -webkit-backdrop-filter: blur(3px);
 }
 
-.btn:hover{
-    animation: shine 1s ease-in-out infinite;
+.btn:hover, .inventorySlots img:hover{
+    animation: shine 0.5s ease-in-out infinite;
     animation-direction: alternate-reverse;
 }
 
@@ -267,9 +322,9 @@ code{
 .vh100{height: 100vh;}
 
 @keyframes shine {
-    from { opacity: 0.5 }
+    from { opacity: 0.6 }
     to { opacity: 1.0 }
-    from { opacity: 0.5 }
+    from { opacity: 0.6 }
 }
 
 .flex1{flex: 1}

@@ -1,4 +1,4 @@
-// limited inventory size
+// limited Size
 // when fighting you can check inventory
 // after each fight you can choose to leave ot fight one more monster
 // make toolbar with inventory icon, so it would be possible to open inventory and equip items or drink potions any time
@@ -40,7 +40,7 @@
 // energy - could be upgraded with weapons - could be restored with potions - restored after each move of the enemy depending on stamina stat
 // stamina - could be upgraded with weapons
 // strength - could be upgraded with weapons
-// inventory slots - could be upgraded with weapons
+// Slots - could be upgraded with weapons
 // damage - could be upgraded with weapons
 
 // WHAT STATS DO
@@ -48,7 +48,7 @@
 // energy - every weapon takes particular amount of energy, to make a hit to enemy, if energy os lower than weapon requires, you can not hit enemy
 // stamina - stamina points is added to energy after every enemy hit, for example: your stamina 5, after enemy made a move you get 5 points to energy stat
 // strength - determines chance of critical hit, if your strength is 5, you have 5% chance to maka a critical hit which does 3x regular damage
-// inventory slots - determines how many items player could carry have in his inventory
+// Slots - determines how many items player could carry have in his inventory
 // damage - determines initial player damage, if player damage stat is 3 and weapon max damage is 5, player will do 3 damage for sure and 0-5 random weapon damage
 
 // dropItems is array of items which enemies drop after death
@@ -419,61 +419,61 @@ export const effects = {
         }
     },
     i1: {
-        title: "Inventory slots +1",
+        title: "Slots +1",
         effect: {
             inventorySlots: 1
         }
     },
     i2: {
-        title: "Inventory slots +2",
+        title: "Slots +2",
         effect: {
             inventorySlots: 2
         }
     },
     i3: {
-        title: "Inventory slots +3",
+        title: "Slots +3",
         effect: {
             inventorySlots: 3
         }
     },
     i4: {
-        title: "Inventory slots +4",
+        title: "Slots +4",
         effect: {
             inventorySlots: 4
         }
     },
     i5: {
-        title: "Inventory slots +5",
+        title: "Slots +5",
         effect: {
             inventorySlots: 5
         }
     },
     i6: {
-        title: "Inventory slots +6",
+        title: "Slots +6",
         effect: {
             inventorySlots: 6
         }
     },
     i7: {
-        title: "Inventory slots +7",
+        title: "Slots +7",
         effect: {
             inventorySlots: 7
         }
     },
     i8: {
-        title: "Inventory slots +8",
+        title: "Slots +8",
         effect: {
             inventorySlots: 8
         }
     },
     i9: {
-        title: "Inventory slots +9",
+        title: "Slots +9",
         effect: {
             inventorySlots: 9
         }
     },
     i10: {
-        title: "Inventory slots +10",
+        title: "Slots +10",
         effect: {
             inventorySlots: 10
         }
@@ -733,7 +733,7 @@ export const trader = {
     potions: [
         {
             image: "https://wow.gamepressure.com/gfx/icons/INV_Potion_21.gif",
-            title: "Health + 10",
+            title: "Health +10",
             effect: {
                 health: 10
             },
@@ -741,7 +741,7 @@ export const trader = {
         },
         {
             image: "https://wow.gamepressure.com/gfx/icons/INV_Potion_21.gif",
-            title: "Health + 20",
+            title: "Health +20",
             effect: {
                 health: 20
             },
@@ -749,7 +749,7 @@ export const trader = {
         },
         {
             image: "https://wow.gamepressure.com/gfx/icons/INV_Potion_21.gif",
-            title: "Health + 30",
+            title: "Health +30",
             effect: {
                 health: 30
             },
@@ -757,7 +757,7 @@ export const trader = {
         },
         {
             image: "https://wow.gamepressure.com/gfx/icons/INV_Potion_21.gif",
-            title: "Health + 40",
+            title: "Health +40",
             effect: {
                 health: 40
             },
@@ -765,7 +765,7 @@ export const trader = {
         },
         {
             image: "https://wow.gamepressure.com/gfx/icons/INV_Potion_21.gif",
-            title: "Health + 50",
+            title: "Health +50",
             effect: {
                 health: 50
             },
@@ -773,7 +773,7 @@ export const trader = {
         },
         {
             image: "https://wow.gamepressure.com/gfx/icons/INV_Potion_21.gif",
-            title: "Health + 60",
+            title: "Health +60",
             effect: {
                 health: 60
             },
@@ -781,7 +781,7 @@ export const trader = {
         },
         {
             image: "https://wow.gamepressure.com/gfx/icons/INV_Potion_21.gif",
-            title: "Health + 70",
+            title: "Health +70",
             effect: {
                 health: 70
             },
@@ -789,7 +789,7 @@ export const trader = {
         },
         {
             image: "https://wow.gamepressure.com/gfx/icons/INV_Potion_21.gif",
-            title: "Health + 80",
+            title: "Health +80",
             effect: {
                 health: 80
             },
@@ -797,7 +797,7 @@ export const trader = {
         },
         {
             image: "https://wow.gamepressure.com/gfx/icons/INV_Potion_21.gif",
-            title: "Health + 90",
+            title: "Health +90",
             effect: {
                 health: 90
             },
@@ -805,7 +805,7 @@ export const trader = {
         },
         {
             image: "https://wow.gamepressure.com/gfx/icons/INV_Potion_21.gif",
-            title: "Health + 100",
+            title: "Health +100",
             effect: {
                 health: 100
             },
@@ -813,7 +813,7 @@ export const trader = {
         },
         {
             image: "https://wow.gamepressure.com/gfx/icons/INV_Potion_156.gif",
-            title: "Energy + 10",
+            title: "Energy +10",
             effect: {
                 energy: 10
             },
@@ -821,7 +821,7 @@ export const trader = {
         },
         {
             image: "https://wow.gamepressure.com/gfx/icons/INV_Potion_156.gif",
-            title: "Energy + 20",
+            title: "Energy +20",
             effect: {
                 energy: 20
             },
@@ -829,7 +829,7 @@ export const trader = {
         },
         {
             image: "https://wow.gamepressure.com/gfx/icons/INV_Potion_156.gif",
-            title: "Energy + 30",
+            title: "Energy +30",
             effect: {
                 energy: 30
             },
@@ -837,7 +837,7 @@ export const trader = {
         },
         {
             image: "https://wow.gamepressure.com/gfx/icons/INV_Potion_156.gif",
-            title: "Energy + 40",
+            title: "Energy +40",
             effect: {
                 energy: 40
             },
@@ -845,7 +845,7 @@ export const trader = {
         },
         {
             image: "https://wow.gamepressure.com/gfx/icons/INV_Potion_156.gif",
-            title: "Energy + 50",
+            title: "Energy +50",
             effect: {
                 energy: 50
             },
@@ -853,7 +853,7 @@ export const trader = {
         },
         {
             image: "https://wow.gamepressure.com/gfx/icons/INV_Potion_156.gif",
-            title: "Energy + 60",
+            title: "Energy +60",
             effect: {
                 energy: 60
             },
@@ -861,7 +861,7 @@ export const trader = {
         },
         {
             image: "https://wow.gamepressure.com/gfx/icons/INV_Potion_156.gif",
-            title: "Energy + 70",
+            title: "Energy +70",
             effect: {
                 energy: 70
             },
@@ -869,7 +869,7 @@ export const trader = {
         },
         {
             image: "https://wow.gamepressure.com/gfx/icons/INV_Potion_156.gif",
-            title: "Energy + 80",
+            title: "Energy +80",
             effect: {
                 energy: 80
             },
@@ -877,7 +877,7 @@ export const trader = {
         },
         {
             image: "https://wow.gamepressure.com/gfx/icons/INV_Potion_156.gif",
-            title: "Energy + 90",
+            title: "Energy +90",
             effect: {
                 energy: 90
             },
@@ -885,7 +885,7 @@ export const trader = {
         },
         {
             image: "https://wow.gamepressure.com/gfx/icons/INV_Potion_156.gif",
-            title: "Energy + 100",
+            title: "Energy +100",
             effect: {
                 energy: 100
             },
