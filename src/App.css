@@ -50,6 +50,7 @@ h1, h2, h3, h4, h5, h6{
 
 .gold{
     gap: 10px;
+    font-family:"Bookman Old Style";
 }
 
 .mainWrapper{
@@ -93,13 +94,12 @@ h1, h2, h3, h4, h5, h6{
 }
 
 .characterPanel img:not(.inventorySlot, .inventoryItem img){
-    max-width: 400px;
+    max-width: 300px;
     margin-bottom: 20px;
     object-fit: contain;
 }
 
 .characterInfo{
-    padding: 20px;
     min-width: 250px;
 }
 
@@ -216,6 +216,22 @@ h1, h2, h3, h4, h5, h6{
     background-color: rgba(255, 255, 255, 0.45) !important;
 }
 
+.progress{
+    background-color: rgba(255, 255, 255, 0.6) !important;
+}
+
+.healthBar .progress-bar{
+    background-color: #9d1c1c !important;
+}
+
+.energyBar .progress-bar {
+    background-color: #1c509d !important;
+}
+
+.healthBar, .energyBar{
+    height: 30px !important;
+}
+
 .buyDisabled{
     background-color: rgba(0,0,0,0.1) !important;
     cursor: initial;
@@ -237,7 +253,7 @@ h1, h2, h3, h4, h5, h6{
     left: -20px !important;
 }
 
-.topBar, .characterSelectCard, .btn, .characterPanel, .popover, .inventorySlot, .stats, .shop, .inventory, .toolTip {
+.topBar, .characterSelectCard, .btn, .characterPanel, .popover, .inventorySlot, .stats, .shop, .inventory, .toolTip, .healthBar, .energyBar {
     box-shadow: 0 3px 10px rgb(0 0 0 / 10%), 0 3px 10px rgb(0 0 0 / 15%), 0 3px 8px rgb(0 0 0 / 20%);
 }
 
@@ -308,8 +324,8 @@ h1, h2, h3, h4, h5, h6{
 }
 
 .glass, .elevation1{
-    backdrop-filter: blur(2px);
-    -webkit-backdrop-filter: blur(2px);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
 }
 
 .image-bg {
@@ -355,12 +371,12 @@ code{
 
 /* Track */
 ::-webkit-scrollbar-track {
-    background: rgb(142, 161, 169);
+    background: #23323f;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-    background: #23323f;
+    background: rgb(142, 161, 169);
 }
 
 /* Handle on hover */

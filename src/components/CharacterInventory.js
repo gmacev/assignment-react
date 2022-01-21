@@ -13,7 +13,7 @@ import {effects} from "../misc/Helpers";
 
 
 const CharacterInventory = () => {
-    const {weapons, potions, items, character, gold} = useSelector((state) => state.playerData.value)
+    const {weapons, potions, items, character, gold, buyDisabled} = useSelector((state) => state.playerData.value)
     const dispatch = useDispatch()
     const {pathname} = useLocation()
 
@@ -38,7 +38,8 @@ const CharacterInventory = () => {
         dispatch(updatePlayerWeapons(weaps))
     }
 
-    function sellItem(item, index, category){
+    function sellItem(item, index)
+    {
         console.log(item.price)
 
         item = {...item}
@@ -57,9 +58,7 @@ const CharacterInventory = () => {
             dispatch(updatePlayerGold(gold+item.price/2))
         }
 
-
-
-       // dispatch(updatePlayerGold(gold-weapon.price))
+        dispatch(updateBuyDisabled(false))
     }
 
 
@@ -86,7 +85,7 @@ const CharacterInventory = () => {
                                         <div className="whiteText highText fw-bold">{weapons[i].energyPerHit}</div>
                                     </div>
                                 </code>
-                                {pathname === "/shop" && <button onClick={() => sellItem(weapons[i], i, 0)} className="btn btn-sm btn-danger" style={{zIndex: "5554"}} >Sell for {(weapons[i].price / 2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")}</button>}
+                                {pathname === "/shop" && <button onClick={() => sellItem(weapons[i], i)} className="btn btn-sm btn-danger" style={{zIndex: "5554"}} >Sell for {(weapons[i].price / 2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")}</button>}
                             </div>
                         </Hover>
                     </ReactHover>
@@ -109,7 +108,7 @@ const CharacterInventory = () => {
                                 <code className="whiteText d-flex justify-content-evenly flex-column">
                                     <div className="whiteText highText">{potions[i].title}</div>
                                 </code>
-                                {pathname === "/shop" && <button onClick={() => sellItem(potions[i], i, 1)} className="btn btn-sm btn-danger">Sell for {(potions[i].price / 2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")}</button>}
+                                {pathname === "/shop" && <button onClick={() => sellItem(potions[i], i)} className="btn btn-sm btn-danger">Sell for {(potions[i].price / 2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")}</button>}
                             </div>
                         </Hover>
                     </ReactHover>

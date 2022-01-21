@@ -35,6 +35,7 @@ import TopBar from "./components/TopBar";
 import StartGame from "./pages/StartGame";
 import Game from "./pages/Game";
 import Trader from "./pages/Trader";
+import Arena from "./pages/Arena";
 
 function App() {
   return (
@@ -45,6 +46,7 @@ function App() {
               <Route path={"/"} element={<StartGame/>}/>
               <Route path={"/game"} element={<Game/>}/>
               <Route path={"/shop"} element={<Trader/>}/>
+              <Route path={"/arena"} element={<Arena/>}/>
             </Routes>
           </BrowserRouter>
       </div>
