@@ -12,7 +12,7 @@ const CharacterSelectCard = ({char, index, getSelected, setSelected, setCharacte
     }
 
     return (
-        <div onClick={characterSelected} className={`characterSelectCard ${getSelected[index] ? "characterSelected" : "border1"} elevation1`}>
+        <div onClick={characterSelected} className={`characterSelectCard ${getSelected[index] ? "characterSelected" : "border1"} glass elevation1`}>
             <div className="characterImageWrapper">
                 <img src={char.image} alt=""/>
             </div>

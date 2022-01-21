@@ -1,30 +1,33 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {useSelector} from "react-redux";
-import {Popover, OverlayTrigger, Button} from "react-bootstrap";
+import {effects} from "../misc/Helpers";
 
 const CharacterWeapon = () => {
     const {weapons} = useSelector((state) => state.playerData.value)
     const weapon = weapons.find(x => x.equipped === true)
 
-    let popoverRight
+    //let [getPopOverContent, setPopOverContent] = useState(null)
 
-    if(weapon) {
-        popoverRight = (
-            <Popover id="popover-trigger-click-root-close" className="popover" title="Weapon stats">
-                <div className="d-flex justify-content-around">
-                    <div>
-                        <div className="whiteText highText">Max damage:</div>
-                        <div className="whiteText highText">Energy per hit:</div>
-                        <div className="whiteText highText">Effects:</div>
-                    </div>
-                    <div className="d-flex flex-column align-items-end">
-                        <div className="whiteText highText fw-bold">{weapon.maxDamage}</div>
-                        <div className="whiteText highText fw-bold">{weapon.energyPerHit}</div>
-                    </div>
+    //console.log(weapon)
+
+   /* useEffect(() => {
+        if(weapon)
+        {
+            setPopOverContent(<div className="d-flex justify-content-around">
+                <div>
+                    <div className="whiteText highText">Max damage:</div>
+                    <div className="whiteText highText">Energy per hit:</div>
+                    <div className="whiteText highText">Effects:</div>
                 </div>
-            </Popover>
-        )
-    }
+                <div className="d-flex flex-column align-items-end">
+                    <div className="whiteText highText fw-bold">{weapon.maxDamage}</div>
+                    <div className="whiteText highText fw-bold">{weapon.energyPerHit}</div>
+                </div>
+            </div>)
+        }
+    }, [weapon])*/
+
+
 
     return (
         <div>
@@ -32,13 +35,25 @@ const CharacterWeapon = () => {
                 !weapon || !weapon.equipped ?
                     <div className="inventorySlot elevation2 border1"/>
                     :
-                    <div className="d-flex align-items-center justify-content-center">
-                        <div className="inventoryItem elevation2 border1 d-flex me-3">
-                            <img src="https://wow.gamepressure.com/gfx/icons/INV_Sword_04.gif" alt=""/>
+                    <div className="d-flex flex-wrap align-items-center justify-content-center stats elevation2 border1" style={{gap: "10px", padding: "10px"}}>
+                        <div className="inventoryItem">
+                            <img src={weapon.image} alt=""/>
                         </div>
-                        <OverlayTrigger trigger="click" rootClose placement="right"  overlay={popoverRight}>
-                            <button className="btn btn-primary">Weapon stats</button>
-                        </OverlayTrigger>
+                        <code className="d-flex justify-content-evenly whiteText">
+                            <div>
+                                <div className="whiteText mediumText">Max damage: </div>
+                                <div className="whiteText mediumText">Energy/hit: </div>
+                                {weapon.effects.length > 0 &&
+                                <div className="mediumText">Effects: {weapon.effects.map((x, index) => <li key={index} className="mediumText"><span>{effects[x].title}</span></li>)}</div>
+                                }
+                            </div>
+                            <div className="d-flex flex-column align-items-end">
+                                <div className="whiteText mediumText fw-bold">{weapon.maxDamage}</div>
+                                <div className="whiteText mediumText fw-bold">{weapon.energyPerHit}</div>
+                            </div>
+                        </code>
+
+                        {/*<PopOver content={getPopOverContent} title={"Weapon stats"}/>*/}
                     </div>
             }
 

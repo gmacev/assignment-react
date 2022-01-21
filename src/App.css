@@ -1,3 +1,7 @@
+body{
+    overflow-x: hidden;
+}
+
 .container-fluid {
     margin-bottom: 50px;
 }
@@ -44,6 +48,10 @@ h1, h2, h3, h4, h5, h6{
     color: orangered;
 }
 
+.gold{
+    gap: 10px;
+}
+
 .mainWrapper{
     margin-top: 90px;
 }
@@ -85,9 +93,9 @@ h1, h2, h3, h4, h5, h6{
 }
 
 .characterPanel img:not(.inventorySlot, .inventoryItem img){
-    max-width: 300px;
-    width: 100%;
+    max-width: 400px;
     margin-bottom: 20px;
+    object-fit: contain;
 }
 
 .characterInfo{
@@ -104,8 +112,8 @@ h1, h2, h3, h4, h5, h6{
 }
 
 .inventorySlot{
-    width: 75px;
-    height: 75px;
+    width: 64px;
+    height: 64px;
     padding: 15px;
 }
 
@@ -138,6 +146,55 @@ h1, h2, h3, h4, h5, h6{
     border-bottom-left-radius: unset !important;
 }
 
+.shopTabPotions, .shopTabWeapons, .inventorySlots{
+    display: grid;
+    justify-content: space-evenly;
+    grid-gap: 10px;
+}
+
+.shopTabPotions, .shopTabWeapons{
+    grid-template-columns: repeat(auto-fill, 280px);
+    overflow-y: scroll;
+    height: 64vh;
+}
+
+.inventorySlots{
+    grid-template-columns: repeat(auto-fill, 64px);
+}
+
+.inventorySlots img{
+    cursor: pointer;
+}
+
+.inventorySlots img:active{
+    transform: scale(1.1);
+}
+
+.inventorySlots .btn{
+    font-size: 13px;
+    padding: 3px;
+}
+
+.shopItem{
+    padding: 10px;
+    row-gap: 10px;
+}
+
+.shopItem img{
+    max-width: 64px;
+    max-height: 64px;
+}
+
+.shopItem li, .stats li, .toolTip li {
+    list-style-type: square;
+    margin-left: 10px;
+    font-size: 13px;
+}
+
+.shopItem li span{
+    margin-left: -5px;
+}
+
 .shopWeapons, .shopPotions{
     user-select: none;
     cursor: pointer;
@@ -151,15 +208,28 @@ h1, h2, h3, h4, h5, h6{
 }
 
 .shopWeapons:hover, .shopPotions:hover, .shopTraderActiveTab{
-    background-color: rgba(255, 255, 255, 20%);
+    background-color: rgba(255, 255, 255, 20%) !important;
+}
+
+.shopWeapons:active, .shopPotions:active{
+    transition: 0s;
+    background-color: rgba(255, 255, 255, 0.45) !important;
+}
+
+.buyDisabled{
+    background-color: rgba(0,0,0,0.1) !important;
+    cursor: initial;
+}
+
+.buyDisabled *{
+    opacity: 0.4;
 }
 
 .popover{
     background-color: rgba(255, 255, 255, 15%) !important;
     color: rgba(255, 255, 255, 87%);
-    padding: 15px;
-    margin-left: 20px;
-    min-width: 200px;
+    padding: 10px;
+    min-width: 150px;
 }
 
 .popover-arrow{
@@ -167,7 +237,7 @@ h1, h2, h3, h4, h5, h6{
     left: -20px !important;
 }
 
-.topBar, .characterSelectCard, .btn, .characterPanel, .characterInfo, .popover, .inventorySlot, .stats, .shop, .inventory {
+.topBar, .characterSelectCard, .btn, .characterPanel, .popover, .inventorySlot, .stats, .shop, .inventory, .toolTip {
     box-shadow: 0 3px 10px rgb(0 0 0 / 10%), 0 3px 10px rgb(0 0 0 / 15%), 0 3px 8px rgb(0 0 0 / 20%);
 }
 
@@ -196,6 +266,7 @@ h1, h2, h3, h4, h5, h6{
 
 .whiteText{color: rgb(255, 255, 255);}
 .yellowText{color: rgb(203, 216, 55);}
+.redText{color: rgb(216, 55, 55);}
 
 .humanColor{color: rgb(212 161 111);}
 .dwarfColor{color: rgb(193 46 19);}
@@ -206,7 +277,7 @@ h1, h2, h3, h4, h5, h6{
 .trollColor{color: rgb(96 174 179);}
 .undeadColor{color: rgb(193 196 191);}
 
-.border1{outline: 1px solid rgba(255, 255, 255, 8%);}
+.border1{outline: 1px solid rgba(255, 255, 255, 9%);}
 
 .border1, .characterSelected{
     border-radius: 8px;
@@ -227,13 +298,18 @@ h1, h2, h3, h4, h5, h6{
     -webkit-backdrop-filter: blur(3px);
 }
 
-.btn:hover{
-    animation: shine 1s ease-in-out infinite;
+.btn:hover, .inventorySlots img:hover{
+    animation: shine 0.5s ease-in-out infinite;
     animation-direction: alternate-reverse;
 }
 
 .textUI, .btn{
     font-family: 'Saira', sans-serif;
+}
+
+.glass, .elevation1{
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
 }
 
 .image-bg {
@@ -258,18 +334,44 @@ h1, h2, h3, h4, h5, h6{
     z-index: -1;
 }
 
+.toolTip{
+    background-color: rgba(0, 0, 0, 90%);
+    min-width: 150px;
+    white-space: nowrap;
+    padding: 15px;
+}
+
 code{
     font-size: 15px !important;
     padding: 10px;
 }
 
-
 .vh100{height: 100vh;}
 
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: rgb(142, 161, 169);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #23323f;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #121c23;
+}
+
 @keyframes shine {
-    from { opacity: 0.5 }
+    from { opacity: 0.6 }
     to { opacity: 1.0 }
-    from { opacity: 0.5 }
+    from { opacity: 0.6 }
 }
 
 .flex1{flex: 1}

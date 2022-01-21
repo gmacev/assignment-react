@@ -4,7 +4,7 @@ const CharacterStats = ({char}) => {
     return (
         <div className="d-flex flex-column justify-content-between align-items-center mb-3">
             <h4 className="text-center whiteText highText">Stats</h4>
-            <code className="d-flex stats d-flex justify-content-evenly elevation1 border1">
+            <code className="stats d-flex justify-content-evenly elevation2 border1">
                 <div>
                     <div className="whiteText mediumText">Damage: </div>
                     <div className="whiteText mediumText">Health: </div>

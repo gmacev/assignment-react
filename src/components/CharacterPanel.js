@@ -9,14 +9,14 @@ const CharacterPanel = () => {
     return (
         <div className="characterPanel elevation1 border1 d-flex flex-wrap justify-content-around flex4">
             <img src={character.image} className="flex1" alt=""/>
-            <div className="characterInfo elevation2 border1 d-flex flex-column justify-content-around flex1">
+            <div className="characterInfo d-flex flex-column justify-content-around flex1">
                 <h1 className={`${character.race.toLowerCase()+"Color"} highText text-center`}>{character.race}</h1>
-                <div className="d-flex flex-wrap justify-content-between">
+                <div className="d-flex flex-wrap justify-content-between" style={{gap: "15px"}}>
                     <div className="flex1">
                         <CharacterStats char={character}/>
                     </div>
-                    <div className="flex1 ms-sm-3">
-                        <h4 className="text-center whiteText highText">Utilities</h4>
+                    <div className="flex1">
+                        <h4 className="text-center whiteText highText">Weapon</h4>
                         <CharacterWeapon/>
                     </div>
                 </div>
