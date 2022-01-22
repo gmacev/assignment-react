@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {trader, effects} from "../misc/Helpers";
 import {useDispatch, useSelector} from "react-redux";
 import {updatePlayerWeapons, updatePlayerPotions, updatePlayerItems, updateBuyDisabled, updatePlayerGold} from "../features/PlayerData";
@@ -8,12 +8,29 @@ const Shop = () => {
     const {character, weapons, potions, items, buyDisabled, gold} = useSelector((state) => state.playerData.value)
     const dispatch = useDispatch()
 
+    const weapon = weapons.find(x => x.equipped === true)
+    let extraSlots = weapon ? 1 : 0
+
+    if(weapon) {
+        weapon.effects.map(effect => {
+            if (effect[0] === "i"){
+                extraSlots = effects[effect].effect.inventorySlots+1
+            }
+        })
+    }
+
+    useEffect(() => {
+        if(character.inventorySlots+extraSlots-weapons.length-potions.length-items.length > 0)
+            dispatch(updateBuyDisabled(false))
+    }, [])
+
+
     function buyWeapon(weapon)
     {
         if(buyDisabled)
             return
 
-        character.inventorySlots-weapons.length-potions.length-1-items.length === 0 && dispatch(updateBuyDisabled(true))
+        character.inventorySlots+extraSlots-weapons.length-potions.length-1-items.length <= 0 && dispatch(updateBuyDisabled(true))
 
         weapon = {...weapon}
         weapon.equipped = false
@@ -26,7 +43,7 @@ const Shop = () => {
         if(buyDisabled)
             return
 
-        character.inventorySlots-weapons.length-potions.length-1-items.length === 0 && dispatch(updateBuyDisabled(true))
+        character.inventorySlots+extraSlots-weapons.length-potions.length-1-items.length <= 0 && dispatch(updateBuyDisabled(true))
 
         dispatch(updatePlayerPotions([...potions, potion]))
         dispatch(updatePlayerGold(gold-potion.price))

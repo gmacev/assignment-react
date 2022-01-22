@@ -6,11 +6,17 @@ import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Provider} from "react-redux";
 import {configureStore} from "@reduxjs/toolkit";
-
-//import materialsReducer from "./features/UpdateMaterials";
-//import housesReducer from "./features/UpdateHouses";
-
+import { transitions, positions, types, Provider as AlertProvider } from 'react-alert'
+import AlertTemplate from "react-alert-template-oldschool-dark";
 import playerDataReducer from "./features/PlayerData";
+
+const options = {
+    position: positions.BOTTOM_CENTER,
+    timeout: 7000,
+    offset: '30px',
+    transition: transitions.SCALE,
+    type: types.INFO
+}
 
 const store = configureStore({
     reducer: {
@@ -21,7 +27,9 @@ const store = configureStore({
 ReactDOM.render(
     <React.StrictMode>
         <Provider store={store}>
-            <App />
+            <AlertProvider template={AlertTemplate} {...options}>
+                <App />
+            </AlertProvider>
         </Provider>
     </React.StrictMode>,
     document.getElementById('root')

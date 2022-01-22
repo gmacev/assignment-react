@@ -10,20 +10,22 @@ import {
 } from "../features/PlayerData";
 import ReactHover, { Trigger, Hover } from "react-hover";
 import {effects} from "../misc/Helpers";
+import {useAlert} from 'react-alert'
 
 
 const CharacterInventory = () => {
     const {weapons, potions, items, character, gold, buyDisabled} = useSelector((state) => state.playerData.value)
     const dispatch = useDispatch()
     const {pathname} = useLocation()
-
-    const hoverOptions = {
-        followCursor: false
-    }
+    const alert = useAlert()
 
     let slots = []
 
-    function equipWeapon(weapon, index){
+    function equipWeapon(weapon, index)
+    {
+        if(equippedWeapon() && getFreeSlots(weapon, true) <= 0) {
+            return alert.show("You can't change your weapon, because you won't have enough free inventory slots for your items!")
+        }
 
         const weap = {...weapon}
         const weaps = [...weapons]
@@ -40,8 +42,6 @@ const CharacterInventory = () => {
 
     function sellItem(item, index)
     {
-        console.log(item.price)
-
         item = {...item}
 
         if('equipped' in item)
@@ -62,11 +62,16 @@ const CharacterInventory = () => {
     }
 
 
-    if(weapons.length > 0) {
-        for (let i = 0; i < weapons.length; i++) {
+    if(weapons.length > 0)
+    {
+        for (let i = 0; i < weapons.length; i++)
+        {
+            if(weapons[i].equipped)
+                continue
+
             slots.push(
                 <div key={i+100}>
-                    <ReactHover options={hoverOptions}>
+                    <ReactHover options={{followCursor: false}}>
                         <Trigger type="trigger">
                             <img src={weapons[i].image} onClick={() => pathname === "/game" ? equipWeapon(weapons[i], i) : () => {}} alt=""/>
                         </Trigger>
@@ -99,7 +104,7 @@ const CharacterInventory = () => {
         for (let i = 0; i < potions.length; i++) {
             slots.push(
                 <div key={i+200}>
-                    <ReactHover options={hoverOptions}>
+                    <ReactHover options={{followCursor: false}}>
                         <Trigger type="trigger">
                             <img src={potions[i].image} alt=""/>
                         </Trigger>
@@ -119,13 +124,38 @@ const CharacterInventory = () => {
 
     if(items.length > 0) {
         for (let i = 0; i < items.length; i++) {
-            slots.push(<img key={i+300} src={items[i].image} alt=""/>);
+            slots.push(<img key={i+300} src={items[i].image} alt=""/>)
         }
     }
 
-    for (let i = 0; i < character.inventorySlots-potions.length-weapons.length-items.length; i++) {
+    for (let i = 0; i < getFreeSlots(equippedWeapon(), false); i++) {
         slots.push(<div className="inventorySlot elevation2 border1" key={i}/>);
     }
+
+    function getExtraSlots(gun)
+    {
+        if(gun) {
+            let extraSlots = 0
+            gun.effects.map(effect => {
+                if (effect[0] === "i")
+                    extraSlots = effects[effect].effect.inventorySlots
+            })
+
+            return extraSlots+1
+        }
+
+        return 0
+    }
+
+    function getAllSlots(){
+        return character.inventorySlots+getExtraSlots(equippedWeapon())
+    }
+
+    function getFreeSlots(gun, onEquip){
+        return character.inventorySlots+getExtraSlots(gun)+(onEquip? 1 : 0)-potions.length-weapons.length-items.length
+    }
+
+    function equippedWeapon() {return weapons.find(x => x.equipped === true)}
 
     return (
         <div className="inventory elevation1 border1 flex2">

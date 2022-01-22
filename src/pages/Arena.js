@@ -1,7 +1,12 @@
 import React from 'react';
 import CharacterPanel from "../components/CharacterPanel";
 
-const Arena = () => {
+import {useHistory, useLocation, useNavigate} from "react-router-dom";
+import {useState, useEffect} from "react";
+
+const Arena = ({ navigation }) => {
+
+
     return (
         <div>
             <CharacterPanel/>
