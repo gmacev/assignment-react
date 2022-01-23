@@ -1,33 +1,38 @@
 import React, {useEffect, useState} from 'react';
 import {useSelector} from "react-redux";
 import {effects} from "../misc/Helpers";
+import {updatePlayerWeapons} from "../features/PlayerData";
+import {useDispatch} from "react-redux";
+import {useAlert} from 'react-alert'
 
 const CharacterWeapon = () => {
-    const {weapons} = useSelector((state) => state.playerData.value)
+    const {character, weapons, potions, items} = useSelector((state) => state.playerData.value)
+    const dispatch = useDispatch()
+    const alert = useAlert()
     const weapon = weapons.find(x => x.equipped === true)
+    const index = weapons.findIndex(x => x.equipped === true)
 
-    //let [getPopOverContent, setPopOverContent] = useState(null)
+    function unEquipWeapon()
+    {
+        let extraSlots = 0
 
-    //console.log(weapon)
+        weapon.effects.map(effect => {
+            if (effect[0] === "i")
+                extraSlots = effects[effect].effect.inventorySlots
+        })
 
-   /* useEffect(() => {
-        if(weapon)
-        {
-            setPopOverContent(<div className="d-flex justify-content-around">
-                <div>
-                    <div className="whiteText highText">Max damage:</div>
-                    <div className="whiteText highText">Energy per hit:</div>
-                    <div className="whiteText highText">Effects:</div>
-                </div>
-                <div className="d-flex flex-column align-items-end">
-                    <div className="whiteText highText fw-bold">{weapon.maxDamage}</div>
-                    <div className="whiteText highText fw-bold">{weapon.energyPerHit}</div>
-                </div>
-            </div>)
+        if(character.inventorySlots+extraSlots-1-potions.length-weapons.length-items.length <= 0){
+            return alert.show("You can't unequip your weapon, because you won't have enough free inventory slots for your items!", {type: 'error'})
         }
-    }, [weapon])*/
+        const weap = {...weapon}
+        const weaps = [...weapons]
 
+        weap.equipped = false
+        weaps[index] = weap
+        dispatch(updatePlayerWeapons(weaps))
 
+        console.log(weaps, index)
+    }
 
     return (
         <div>
@@ -36,7 +41,7 @@ const CharacterWeapon = () => {
                     <div className="inventorySlot elevation2 border1"/>
                     :
                     <div className="d-flex flex-wrap align-items-center justify-content-center stats elevation2 border1" style={{gap: "10px", padding: "10px"}}>
-                        <div className="inventoryItem">
+                        <div onClick={unEquipWeapon} className="inventoryItem">
                             <img src={weapon.image} alt=""/>
                         </div>
                         <code className="d-flex justify-content-evenly whiteText">
@@ -52,8 +57,6 @@ const CharacterWeapon = () => {
                                 <div className="whiteText mediumText fw-bold">{weapon.energyPerHit}</div>
                             </div>
                         </code>
-
-                        {/*<PopOver content={getPopOverContent} title={"Weapon stats"}/>*/}
                     </div>
             }
 

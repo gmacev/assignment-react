@@ -2,8 +2,10 @@ import React, {useEffect, useState} from 'react';
 import {trader, effects} from "../misc/Helpers";
 import {useDispatch, useSelector} from "react-redux";
 import {updatePlayerWeapons, updatePlayerPotions, updatePlayerItems, updateBuyDisabled, updatePlayerGold} from "../features/PlayerData";
+import {useAlert} from 'react-alert'
 
 const Shop = () => {
+    const alert = useAlert()
     const [getTab, setTab] = useState(0)
     const {character, weapons, potions, items, buyDisabled, gold} = useSelector((state) => state.playerData.value)
     const dispatch = useDispatch()
@@ -36,6 +38,8 @@ const Shop = () => {
         weapon.equipped = false
         dispatch(updatePlayerWeapons([...weapons, weapon]))
         dispatch(updatePlayerGold(gold-weapon.price))
+
+        alert.show("Bought weapon successfully!", {type: 'success', timeout: 2000, position: "bottom right"})
     }
 
     function buyPotion(potion)
@@ -47,6 +51,8 @@ const Shop = () => {
 
         dispatch(updatePlayerPotions([...potions, potion]))
         dispatch(updatePlayerGold(gold-potion.price))
+
+        alert.show("Bought potion successfully!", {type: 'success', timeout: 2000, position: "bottom right"})
     }
 
     return (

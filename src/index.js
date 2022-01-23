@@ -7,14 +7,14 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import {Provider} from "react-redux";
 import {configureStore} from "@reduxjs/toolkit";
 import { transitions, positions, types, Provider as AlertProvider } from 'react-alert'
-import AlertTemplate from "react-alert-template-oldschool-dark";
+import AlertTemplate from "react-alert-template-basic";
 import playerDataReducer from "./features/PlayerData";
 
 const options = {
     position: positions.BOTTOM_CENTER,
     timeout: 7000,
     offset: '30px',
-    transition: transitions.SCALE,
+    transition: transitions.FADE,
     type: types.INFO
 }
 

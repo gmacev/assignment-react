@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {useLocation} from "react-router-dom";
 import {
@@ -6,7 +6,8 @@ import {
     updatePlayerPotions,
     updatePlayerItems,
     updateBuyDisabled,
-    updatePlayerGold
+    updatePlayerGold,
+    updateFreeSlots
 } from "../features/PlayerData";
 import ReactHover, { Trigger, Hover } from "react-hover";
 import {effects} from "../misc/Helpers";
@@ -14,17 +15,21 @@ import {useAlert} from 'react-alert'
 
 
 const CharacterInventory = () => {
-    const {weapons, potions, items, character, gold, buyDisabled} = useSelector((state) => state.playerData.value)
+    const {weapons, potions, items, character, gold, buyDisabled, freeSlots} = useSelector((state) => state.playerData.value)
     const dispatch = useDispatch()
     const {pathname} = useLocation()
     const alert = useAlert()
 
     let slots = []
 
+    useEffect(() => {
+        dispatch(updateFreeSlots(getFreeSlots(equippedWeapon(), false)))
+    }, [weapons, potions, items])
+
     function equipWeapon(weapon, index)
     {
         if(equippedWeapon() && getFreeSlots(weapon, true) <= 0) {
-            return alert.show("You can't change your weapon, because you won't have enough free inventory slots for your items!")
+            return alert.show("You can't change your weapon, because you won't have enough free inventory slots for your items!", {type: 'error'})
         }
 
         const weap = {...weapon}
@@ -58,7 +63,16 @@ const CharacterInventory = () => {
             dispatch(updatePlayerGold(gold+item.price/2))
         }
 
+        else if('price' in item)
+        {
+            console.log(item)
+            dispatch(updatePlayerItems(items.filter((x, i) => i !== index)))
+            dispatch(updatePlayerGold(gold+item.price))
+        }
+
         dispatch(updateBuyDisabled(false))
+
+        alert.show("Sold item successfully!", {type: 'success', timeout: 2000, position: "bottom right"})
     }
 
 
@@ -94,14 +108,14 @@ const CharacterInventory = () => {
                             </div>
                         </Hover>
                     </ReactHover>
-
                 </div>
             )
         }
     }
 
     if(potions.length > 0) {
-        for (let i = 0; i < potions.length; i++) {
+        for (let i = 0; i < potions.length; i++)
+        {
             slots.push(
                 <div key={i+200}>
                     <ReactHover options={{followCursor: false}}>
@@ -123,8 +137,26 @@ const CharacterInventory = () => {
     }
 
     if(items.length > 0) {
-        for (let i = 0; i < items.length; i++) {
-            slots.push(<img key={i+300} src={items[i].image} alt=""/>)
+        for (let i = 0; i < items.length; i++)
+        {
+            slots.push(
+                <div key={i+300}>
+                    <ReactHover options={{followCursor: false}}>
+                        <Trigger type="trigger">
+                            <img key={i+300} src={items[i].image} alt=""/>
+                        </Trigger>
+
+                        <Hover type="hover">
+                            {pathname === "/shop" &&
+                            <div className="d-flex flex-column toolTip glass border1">
+                                <button onClick={() => sellItem(items[i], i)} className="btn btn-sm btn-danger">Sell for {items[i].price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")}</button>
+                            </div>
+                            }
+                        </Hover>
+
+                    </ReactHover>
+                </div>
+            )
         }
     }
 
@@ -152,13 +184,17 @@ const CharacterInventory = () => {
     }
 
     function getFreeSlots(gun, onEquip){
-        return character.inventorySlots+getExtraSlots(gun)+(onEquip? 1 : 0)-potions.length-weapons.length-items.length
+        const freeSlots = character.inventorySlots+getExtraSlots(gun)+(onEquip? 1 : 0)-potions.length-weapons.length-items.length
+
+        //dispatch(updateFreeSlots(freeSlots))
+
+        return freeSlots
     }
 
     function equippedWeapon() {return weapons.find(x => x.equipped === true)}
 
     return (
-        <div className="inventory elevation1 border1 flex2">
+        <div className="inventory elevation1 border1 flex1">
             <h1 className="whiteText highText text-center mb-3">Inventory</h1>
 
             <div className="inventorySlots">

@@ -1,16 +1,40 @@
-// limited Size
-// when fighting you can check inventory
 // after each fight you can choose to leave ot fight one more monster
-// make toolbar with inventory icon, so it would be possible to open inventory and equip items or drink potions any time
 
-// if you have weapon with plus slot effect and removing that weapon would make your slots disapear (inventory is full)
-// you should not let user remove weapon
 
-// you should have at least 4 pages
-// start game page - page where player choose his character
-// main page - where payer info is shown, his gold, stats, inventory, equipment
-// trader page - page where player can buy and sell stuff
-// arena - page where player fight monsters
+//trader
+// also trader will buy items from player for gold (item monsters drop).
+
+
+// ARENA PAGE
+// each monster drops random amount of items after it was killed
+// maxItemsDrop - determines how many items monster could drop, from 0 to maxItemsDrop value
+// player should not be able to leave arena when he is fighting the monster, only when fight is done
+
+
+// WHAT STATS DO
+// health - if health gets to 0 player dies, game over, health is decreasing when player takes damage from enemy
+
+// dropItems is array of items which enemies drop after death
+// enemy drop should be shown in modal, so player could choose what items to take, or leave
+// items has price, it determines how much gold trader would give for the item
+
+
+
+
+//done
+
+// ARENA PAGE
+// arena is place where player fights monsters
+// while fighting monster player should be able to drink potion any time
+// monster damage is from 0 to his max damage, on every hit to player
+// in arena player and monster hp should be displayed in progress bars
+// also player energy should be displayed in progress bar (each hit should decrease energy)
+
+// TRADER PAGE
+// Trader sells weapons and potions
+// in this page trader component and player inventory is visible
+// trader buys items for half the price if player want to sell for weapon he bought of potion
+// trader sell weapons and potions,
 
 // START GAME PAGE
 // when game start player should be able to choose his character (info and image should be displayed)
@@ -19,21 +43,17 @@
 // MAIN PAGE
 // in this page player can select what weapon to equip
 
-// TRADER PAGE
-// Trader sells weapons and potions
-// trader sell weapons and potions, also trader will buy items from player for gold (item monsters drop).
-// trader buys items for half the price if player want to sell for weapon he bought of potion
-// in this page trader component and player inventory is visible
+// you should have at least 4 pages
+// start game page - page where player choose his character
+// main page - where payer info is shown, his gold, stats, inventory, equipment
+// trader page - page where player can buy and sell stuff
+// arena - page where player fight monsters
 
-// ARENA PAGE
-// arena is place where player fights monsters
-// while fighting monster player should be able to drink potion any time
-// each monster drops random amount of items after it was killed
-// monster damage is from 0 to his max damage, on every hit to player
-// maxItemsDrop - determines how many items monster could drop, from 0 to maxItemsDrop value
-// player should not be able to leave arena when he is fighting the monster, only when fight is done
-// in arena player and monster hp should be displayed in progress bars
-// also player energy should be displayed in progress bar (each hit should decrease energy)
+// if you have weapon with plus slot effect and removing that weapon would make your slots disapear (inventory is full)
+// you should not let user remove weapon
+
+// when fighting you can check inventory
+// make toolbar with inventory icon, so it would be possible to open inventory and equip items or drink potions any time
 
 // player will have these STATS
 // health - could be upgraded with weapons - could be restored with potions
@@ -43,19 +63,77 @@
 // Slots - could be upgraded with weapons
 // damage - could be upgraded with weapons
 
-// WHAT STATS DO
-// health - if health gets to 0 player dies, game over, health is decreasing when player takes damage from enemy
+// strength - determines chance of critical hit, if your strength is 5, you have 5% chance to a critical hit which does 3x regular damage
 // energy - every weapon takes particular amount of energy, to make a hit to enemy, if energy os lower than weapon requires, you can not hit enemy
 // stamina - stamina points is added to energy after every enemy hit, for example: your stamina 5, after enemy made a move you get 5 points to energy stat
-// strength - determines chance of critical hit, if your strength is 5, you have 5% chance to maka a critical hit which does 3x regular damage
 // Slots - determines how many items player could carry have in his inventory
 // damage - determines initial player damage, if player damage stat is 3 and weapon max damage is 5, player will do 3 damage for sure and 0-5 random weapon damage
 
-// dropItems is array of items which enemies drop after death
-// enemy drop should be shown in modal, so player could choose what items to take, or leave
-// items has price, it determines how much gold trader would give for the item
+export function randomNum(min, max) {return Math.floor(Math.random() * (max - min) + min)}
 
-export function randomNum(min, max) {return Math.random() * (max - min) + min}
+export function sample(population, k){
+    /*
+        Chooses k unique random elements from a population sequence or set.
+
+        Returns a new list containing elements from the population while
+        leaving the original population unchanged.  The resulting list is
+        in selection order so that all sub-slices will also be valid random
+        samples.  This allows raffle winners (the sample) to be partitioned
+        into grand prize and second place winners (the subslices).
+
+        Members of the population need not be hashable or unique.  If the
+        population contains repeats, then each occurrence is a possible
+        selection in the sample.
+
+        To choose a sample in a range of integers, use range as an argument.
+        This is especially fast and space efficient for sampling from a
+        large population:   sample(range(10000000), 60)
+
+        Sampling without replacement entails tracking either potential
+        selections (the pool) in a list or previous selections in a set.
+
+        When the number of selections is small compared to the
+        population, then tracking selections is efficient, requiring
+        only a small set and an occasional reselection.  For
+        a larger number of selections, the pool tracking method is
+        preferred since the list takes less space than the
+        set and it doesn't suffer from frequent reselections.
+    */
+
+    if(!Array.isArray(population))
+        throw new TypeError("Population must be an array.");
+    let n = population.length;
+    if(k < 0 || k > n)
+        throw new RangeError("Sample larger than population or is negative");
+
+    let result = new Array(k);
+    let setsize = 21;   // size of a small set minus size of an empty list
+
+    if(k > 5)
+        setsize += Math.pow(4, Math.ceil(Math.log(k * 3) / Math.log(4)))
+
+    if(n <= setsize){
+        // An n-length list is smaller than a k-length set
+        let pool = population.slice();
+        for(let i = 0; i < k; i++){          // invariant:  non-selected at [0,n-i)
+            let j = Math.random() * (n - i) | 0;
+            result[i] = pool[j];
+            pool[j] = pool[n - i - 1];       // move non-selected item into vacancy
+        }
+    }else{
+        let selected = new Set();
+        for(let i = 0; i < k; i++){
+            let j = Math.random() * n | 0;
+            while(selected.has(j)){
+                j = Math.random() * n | 0;
+            }
+            selected.add(j);
+            result[i] = population[j];
+        }
+    }
+
+    return result;
+}
 
 export const effects = {
     s1: {
