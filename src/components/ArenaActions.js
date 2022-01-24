@@ -46,7 +46,7 @@ const ArenaActions = ({enemy, setEnemy, getEnemyDamage, setEnemyDamage, getPlaye
         setPlayerDamage(plDamage)
 
         setDamageIndicator2(1)
-        setTimeout(() => {setDamageIndicator2(0)}, 1000)
+        setTimeout(() => {setDamageIndicator2(0)}, 650)
 
         setRn1(randomNum(0, 9999999999))
 
@@ -54,8 +54,8 @@ const ArenaActions = ({enemy, setEnemy, getEnemyDamage, setEnemyDamage, getPlaye
             setDamageIndicator1(1)
             setRn2(randomNum(0, 9999999999))
 
-            setTimeout(() => {setDamageIndicator1(0)}, 1000)
-        }, 1000)
+            setTimeout(() => {setDamageIndicator1(0)}, 650)
+        }, 650)
     }
 
     return (

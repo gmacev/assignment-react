@@ -24,7 +24,21 @@ const EnemyPanel = ({enemy, damage, setPlayerDamage, setGameStatus, getGameStatu
     useEffect(() => {
         if(enemy !== null && enemy) {
             setCurrentHealth(enemy.health)
-            setDropItems(sample(dropItems, randomNum(0, enemy.maxItemsDrop)))
+
+            console.log(enemy.maxItemsDrop)
+            const itemCount = randomNum(0, enemy.maxItemsDrop)
+
+            console.log("itemCount: " + itemCount)
+
+            if(itemCount > 0) {
+                sample(dropItems, itemCount)
+
+                console.log(sample(dropItems, itemCount))
+                setDropItems(sample(dropItems, itemCount))
+            }
+
+            else
+                setDropItems([])
         }
     }, [enemy])
 
@@ -32,7 +46,6 @@ const EnemyPanel = ({enemy, damage, setPlayerDamage, setGameStatus, getGameStatu
         if(enemy !== null && enemy){
             if(getCurrentHealth <= 0) {
                 setGameStatus(1)
-                console.log("getGameStatus", getGameStatus)
             }
         }
 
@@ -68,12 +81,18 @@ const EnemyPanel = ({enemy, damage, setPlayerDamage, setGameStatus, getGameStatu
             </div>
             {getGameStatus === 1 &&
                 <div className="mt-3">
-                    <h4 className="yellowText mediumText text-center">Dropped items</h4>
-                    <div className="d-flex flex-wrap">
-                        {getDropItems.map((item, index) => {
-                            return <img onClick={() => grabItem(item, index)} key={index} className="inventoryItem" src={item.image} alt=""/>
-                    })}
-                    </div>
+                    {getDropItems.length > 0 ?
+                        <div>
+                            <h4 className="yellowText mediumText text-center">Dropped items</h4>
+                            <div className="d-flex flex-wrap">
+                                {getDropItems.map((item, index) => {
+                                    return <img onClick={() => grabItem(item, index)} key={index} className="inventoryItem" src={item.image} alt=""/>
+                                })}
+                            </div>
+                        </div>
+                        :
+                        <h4 className="yellowText mediumText text-center">No items were dropped</h4>
+                    }
                 </div>
             }
         </div>
