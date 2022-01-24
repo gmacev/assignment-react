@@ -91,7 +91,7 @@ const EnemyPanel = ({enemy, damage, setPlayerDamage, setGameStatus, getGameStatu
                             </div>
                         </div>
                         :
-                        <h4 className="yellowText mediumText text-center">No items were dropped</h4>
+                        <h4 className="yellowText mediumText text-center">No items</h4>
                     }
                 </div>
             }
