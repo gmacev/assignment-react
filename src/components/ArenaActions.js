@@ -59,10 +59,10 @@ const ArenaActions = ({enemy, setEnemy, getEnemyDamage, setEnemyDamage, getPlaye
     }
 
     return (
-        <div className="d-flex arenaActions flex-wrap justify-content-around align-items-center flex-column">
-            {enemy === null && <button onClick={() => findEnemy()} className="btn btn-danger">Find enemy</button>}
+        <div className="d-flex arenaActions flex-wrap justify-content-start align-items-center flex-column">
+            {enemy === null && <button onClick={() => findEnemy()} className="btn btn-danger mt-5">Find enemy</button>}
             {(enemy !== null && getGameStatus === 0) &&
-                <div className="w-100 h-100 d-flex justify-content-center position-relative">
+                <div className="w-100 d-flex justify-content-center position-relative">
                     <div className={`damageToPlayer redText fade-in ${getDamageIndicator1 === 1 ? "d-block" : "d-none"} position-absolute`}>-{getPlayerDamage} HP</div>
                     <div className={`damageToEnemy redText fade-in ${getDamageIndicator2 === 1 ? "d-block" : "d-none"} position-absolute`}>-{getEnemyDamage} HP</div>
                     <button onClick={() => attack()} className={`btn align-self-center ${(getDamageIndicator1 !== 0 || getDamageIndicator2 !== 0) ? "btn-secondary disabled" : "btn-danger"}`}>Attack</button>
