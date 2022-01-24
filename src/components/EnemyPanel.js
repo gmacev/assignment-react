@@ -4,6 +4,7 @@ import {dropItems, sample} from "../misc/Helpers";
 import {useDispatch, useSelector} from "react-redux";
 import {updateFreeSlots, updatePlayerItems, updatePlayerWeapons} from "../features/PlayerData";
 import {useAlert} from 'react-alert'
+import {randomNum} from "../misc/Helpers";
 
 const EnemyPanel = ({enemy, damage, setPlayerDamage, setGameStatus, getGameStatus, getRn}) => {
     let [getCurrentHealth, setCurrentHealth] = useState(enemy ? enemy.health : 0)
@@ -23,7 +24,7 @@ const EnemyPanel = ({enemy, damage, setPlayerDamage, setGameStatus, getGameStatu
     useEffect(() => {
         if(enemy !== null && enemy) {
             setCurrentHealth(enemy.health)
-            setDropItems(sample(dropItems, enemy.maxItemsDrop))
+            setDropItems(sample(dropItems, randomNum(0, enemy.maxItemsDrop)))
         }
     }, [enemy])
 
